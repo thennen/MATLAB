@@ -1,0 +1,14 @@
+NoCal = Nov5_ChachaCal.MeasurementParameters;
+NoCal.YCC = 1;
+NoCal.SSC = 1;
+NoCal.EmuPerVolt = 1;
+pareval('Chacha','() = CalTransform((),NoCal)');
+YCC = Nov5_ChachaCal_3.X/Nov5_ChachaCal.X;
+PartialCal = NoCal; PartialCal.YCC = YCC;
+pareval('Chacha','() = CalTransform((),PartialCal);');
+SSC = Nov5_ChachaCal_2.X/Nov5_ChachaCal_4.X;
+EmuPerVolt = 6297000/Nov5_ChachaCal_2.X;
+Cal = PartialCal;
+Cal.SSC = SSC;
+Cal.EmuPerVolt = EmuPerVolt;
+pareval('Chacha','() = CalTransform((),Cal);');
